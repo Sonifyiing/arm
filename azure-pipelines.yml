@@ -1,0 +1,21 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool: default
+  vmImage: windows-2019
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  displayName: 'deployingg pip'
+  inputs:
+    azureResourceManagerConnection: 'azure connection'
+    subscriptionId: '0bfbc3da-d0c9-4f27-aace-655fdf0480d8'
+    resourceGroupName: agentrg
+    location: 'West Europe'
+    csmFile: template.json
+    csmParametersFile: parameter.json
